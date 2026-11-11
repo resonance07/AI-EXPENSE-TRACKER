@@ -20,7 +20,7 @@ CATEGORY_RULES = {
 def load_data() -> pd.DataFrame:
     try:
         df = pd.read_csv(DATA_FILE)
-        df["Date"] = pd.to_datetime(df["Date"])
+        df["Date"] = pd.to_datetime(df["Date"], format="mixed", errors="coerce")
         return df
     except FileNotFoundError:
         df = pd.DataFrame(columns=["Date", "Amount", "Category", "Description"])
